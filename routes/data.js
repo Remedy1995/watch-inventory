@@ -1938,10 +1938,10 @@ var username=req.session.username;
  router.post('/adminitemsedit:id',function(req,res){
  var id=req.params.id;//get the id 
  var billdate=req.body.date;
- var quantity=parseFloat(req.body.quantity);
- var price=parseFloat(req.body.itemprice);
+ var quantity=req.body.quantity;
+ var price=req.body.itemprice;
  var item=req.body.itemlist;
- var total=parseFloat(req.body.total);
+ var total=req.body.total;
 
  if(billdate===""){
    req.flash('server-error',"please enter the billdate")
@@ -1964,7 +1964,10 @@ var username=req.session.username;
   res.redirect("/adminitemsedit"+id);
  }
  else{
- Add.findByIdAndUpdate(id, { itemname:item,date:billdate,itemprice:price,itemquantity:quantity,total:total}, 
+   var parseprice=parseFloat(price)
+   var parsequantity=parseFloat(quantity)
+   var parsetotal=parseFloat(total)
+ Add.findByIdAndUpdate(id, { itemname:item,date:billdate,itemprice:parseprice,itemquantity:parsequantity,total:parsetotal}, 
      function (err, docs) { 
 //  req.flash('server-success',"You have updated your information successfully")
  

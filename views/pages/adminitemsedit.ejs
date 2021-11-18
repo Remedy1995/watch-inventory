@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="margin-left: 70px;">Item Name</label>
                             
-                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 190px;margin-left: 20px;margin-top: 20px;"  name="itemlist">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width: 190px;margin-left: 20px;margin-top: 20px;"  name="itemlist" required>
                               
                                 <option selected   >Select items</option>
                                <% sales.forEach((sales)=>{%>
@@ -46,7 +46,7 @@
 
                             <label for="exampleInputEmail1" style="margin-left: 70px;">Total Pieces(Stocks)</label>
                             
-                            <input type="number" class="form-control"  aria-describedby="emailHelp"   placeholder="enter total" style="width: 200px;" name="total"/>
+                            <input type="number" class="form-control"  aria-describedby="emailHelp"   placeholder="enter total" style="width: 200px;" name="total"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01"/>
                             <small id="emailHelp" class="form-text text-muted"></small>
                            
                           
@@ -410,18 +410,17 @@ document.getElementById("name").innerHTML=txt1;
   
               <script>
 
-                function reSum()
+function reSum()
                 {
-                    var num1 = parseInt(document.getElementById("Num1").value)+".00";
-                    var num2 = parseInt(document.getElementById("Num2").value)+".00";
+                    var num1 = (document.getElementById("Num1").value);
+                    var num2 = (document.getElementById("Num2").value);
                    
                    if(NaN){
                     document.getElementById("Sum").value="0.00"
                    }else{
-                    document.getElementById("Sum").value = num1 * num2+".00";
+                    document.getElementById("Sum").value = (num1 * num2).toFixed(2);
                    }
                 }
-        
             </script>
   
             </body>
