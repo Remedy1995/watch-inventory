@@ -12,6 +12,10 @@ html, body{
 	  
 }
 
+table.table{
+	position: relative;
+    left: -60px;
+}
 .mode{
 	height: 40px;
  margin-left: -10px

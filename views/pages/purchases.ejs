@@ -26,8 +26,8 @@
                             <th scope="col">Price </th>
                             <th scope="col"> Total Amount </th>
                             <th scope="col"> View </th>
-                            <th scope="col"> Edit </th>
-                            <th scope="col" style="position: relative;left: -8px;"> Delete </th>
+                            <th scope="col"> Delete</th>
+                            <th scope="col" style="position: relative;left: -8px;"> Edit </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,7 @@
                             <td><%=purchase[i].price%></td>
                             <td><%=purchase[i].totalamount%></td>
                             <td><a href="/admininformation<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>
-                                <td><a href="/edit<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>            
+                                           
                             <td><button class="mode" onclick="(function(){
  Swal.fire({
   title: 'Are you sure?',
@@ -61,7 +61,7 @@
   if (result.isConfirmed) {
     window.location.href='delete<%=purchase[i].id%>'
   }
-})                      })();"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+})                      })();"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td> <td><a href="/edit<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>
                             <tr>
                                 
                                
