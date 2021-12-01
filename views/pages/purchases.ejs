@@ -48,7 +48,7 @@
                             <td><%=purchase[i].totalamount%></td>
                             <td><a href="/admininformation<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>
                                 <td><a href="/edit<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>            
-                            <td><button onclick="(function(){
+                            <td><button class="mode" onclick="(function(){
  Swal.fire({
   title: 'Are you sure?',
   text: 'You cant revert this',
@@ -59,9 +59,9 @@
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
-    window.location.href='/delete<%=purchase[i].id%>'
+    window.location.href='delete<%=purchase[i].id%>'
   }
-})                      })();" style="margin-left:-10px"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+})                      })();"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <tr>
                                 
                                

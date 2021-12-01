@@ -12,6 +12,18 @@ html, body{
 	  
 }
 
+.mode{
+	height: 40px;
+ margin-left: -10px
+}
+
+@media (max-width:1024px){
+	.mode{
+		height: 40px;
+	 margin-left: -10px
+	}
+	
+}
 
 @media print {
 	div.header-section{
