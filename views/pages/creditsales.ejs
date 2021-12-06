@@ -422,7 +422,7 @@ document.getElementById("name").innerHTML=txt1;
   
               <script>
 
-                function reSum()
+function reSum()
                 {
                     var num1 = (document.getElementById("Num1").value);
                     var num2 = (document.getElementById("Num2").value);
@@ -430,7 +430,11 @@ document.getElementById("name").innerHTML=txt1;
                    if(NaN){
                     document.getElementById("Sum").value="0.00"
                    }else{
-                    document.getElementById("Sum").value =(num1 *(-num2)).toFixed(2);
+                  var a =document.getElementById("Sum").value = (num1 *(-num2)).toFixed(3).slice(0,-1);
+                    function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+       roundToTwo(a)
                    }
                 }
         
