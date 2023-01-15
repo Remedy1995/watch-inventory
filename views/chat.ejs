@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+   <div>
+    <h1>This is a chat platform </h1>
+    <audio controls id="music" autoplay="true" style="display: block;" muted>
+        <source src="audio/success-fanfare-trumpets-6185.mp3" type="audio/ogg" >
+        <source src="public/audio/success-fanfare-trumpets-6185.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+      <div id="show-notification"></div>
+      <div id="show-mess" style="display:none;" ><span style="cursor: pointer;background-color: red;"   onclick="this.parentElement.style.display='none'" id="message-pop"></span></div>
+    <div id="firstname"  style="display: block;"><%=firstname%></div>
+    <div id="show-typing" style="display: block;"></div>
+    <div id="connection"></div>
+    <form id="form-container">
+    <input type="text" id="message-box"  placeholder="write a message">
+     <button type="submit" value="submit" id="submit">Submit</button>
+    </form>
+   
+   </div> 
+</body>
+</html>
