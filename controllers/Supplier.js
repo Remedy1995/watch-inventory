@@ -62,7 +62,7 @@ exports.supplierInformation=(req,res)=>{
 
      exports.getSuppliersAdminEdit=(req,res)=>{
            var username=req.session.username;
-           Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
+           Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
              for(i=0;i<docs.length;i++){
                var id=docs[i].id;
                var firstname=docs[i].firstname;

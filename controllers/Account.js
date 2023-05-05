@@ -64,7 +64,7 @@ exports.postAdminChangePassword=(req,res)=>{
       if(!founduser){
       console.log("error")
       
-      // req.flash('server-error',"The password you have entered does not match our records please try again")
+      req.flash('server-error',"The password you have entered does not match our records please try again")
       res.redirect("/adminchangepassword"+id)
       }
       else{
@@ -216,7 +216,7 @@ exports.acccountEditId=(req,res)=>{
     } 
     // req.flash('server-success',"You have updated your information successfully")
     console.log("information inserted successfully");
-    req.flash('server-success',"Data inserted  successfully");
+   req.flash('server-success',"You have updated your information successfully")
     res.redirect("/accounteditinfo"+id);
         
     }); 

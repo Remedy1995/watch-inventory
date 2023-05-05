@@ -48,7 +48,7 @@
                             <td><%=purchase[i].totalamount%></td>
                             <td><a href="/debtorsinformation<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>
                                 <td><a href="/debtorsedit<%=purchase[i].id%>"><i class="fa fa-eye" aria-hidden="true"></i></td>            
-                            <td><button onclick="(function(){
+                            <td><button  style="cursor:pointer" onclick="(function(){
  Swal.fire({
   title: 'Are you sure?',
   text: 'You cant revert this',

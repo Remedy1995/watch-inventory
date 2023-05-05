@@ -212,7 +212,7 @@ exports.logAdmin=(req,res)=>{
   req.session.username=req.body.username;
   var username=req.session.username;
  req.session.password=req.body.password;
- var password=md5(req.body.password);
+ var password= (req.body.password);
  var username1=req.body.username;
   Admin.findOne({username:username},function(err,founduser,foundname){
    if(!founduser){
