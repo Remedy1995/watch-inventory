@@ -167,6 +167,12 @@ exports.getUserHome=(req,res)=>{
                     }
                   
                      if(founduser.password===password || founduser.role==="Admin"){
+                      res.cookie("role","user",{
+                        maxAge: 5000,
+                        secure: true,
+                        httpOnly: true,
+                        sameSite: 'lax'
+                    });
                       // console.log(founduser.age)
                      var firstname=founduser.firstname;
                      var lastname=founduser.lastname;
@@ -354,14 +360,19 @@ exports.postuserPasswordChange=(req,res)=>{
   }
 
   exports.logout=(req,res)=>{
+    console.log('logout',req.session.username)
   req.session.destroy(err=>{
     if(err){
-      console.log('cannot logout')
+      console.log('cannot logout',err)
     }
     else{
-      res.redirect("/signupandsignin")
+      res.clearCookie();
+      console.log('you have logout',req.session)
+      res.redirect('/')
     }
   })
+  // })
+
   }
 
 
@@ -379,5 +390,7 @@ exports.postuserPasswordChange=(req,res)=>{
   }
 
   exports.home=(req,res)=>{
+    console.log('you are on the landing page',req.session.username);
+   console.log(req.cookies.role,typeof(req.cookies.role))
   res.render('pages/signupandsignin',{serverSucess:req.flash('server-success'),serverError:req.flash('server-error')});
   }

@@ -49,8 +49,8 @@ exports.getAdminChangePassword=(req,res)=>{
 
 exports.postAdminChangePassword=(req,res)=>{
     var id=req.params.id;
-    var oldpassword=md5(req.body.password);
-    var newpassword=md5(req.body.password1);
+    var oldpassword=(req.body.password);
+    var newpassword=(req.body.password1);
     if(oldpassword===""){
     req.flash("please enter the old password");
     res.redirect("/adminchangepassword"+id);

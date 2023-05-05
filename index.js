@@ -1,12 +1,14 @@
 const express=require('express');
 const app=express();
 const socket = require("socket.io");
+const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 5000;
 const userMiddleware = require ('./middleware/user')
 const time=require('./date');
 const add=require('./Additems');
 const data=require('./routes/data');
 const sales=require('./routes/Sales');
+app.use(cookieParser());
 app.use('/',data);
 app.use('/',sales);
 require('dotenv').config()
