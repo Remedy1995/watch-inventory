@@ -12,7 +12,6 @@ html, body{
 	  
 }
 
-
 td.delete-debtor:hover{
 
 }
@@ -271,6 +270,7 @@ label.col-sm-2.control-label {
   height: 0px;
 }
 #menu li a {
+	text-decoration: none;
 	font-style: normal;
     font-weight: 400;
     position: relative;
@@ -307,7 +307,7 @@ label.col-sm-2.control-label {
   position: absolute;
   visibility: hidden;
   left: 100%;
-  top: -100px;
+  top: 0px;
   background-color: #2b303a;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   opacity: 0;
