@@ -1,377 +1,385 @@
+<%- include('../partials/header'); %>
 
-
-  <%- include('../partials/header'); %>
-
-<body>
+  <body>
     <%- include('../partials/minibody'); %>
-         <div class="container">
-            <div class="row">
-              <div class="col-sm-8">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                     <li class="breadcrumb-item active" aria-current="page">Add Items</li>
-                    </ol>
-                  </nav>
-                  <% if(serverSucess){%>
-                    <p style="color: blue;text-align: center;"><%= serverSucess%></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Add Items</li>
+              </ol>
+            </nav>
+            <% if(serverSucess){%>
+              <p style="color: blue;text-align: center;">
+                <%= serverSucess%>
+              </p>
+              <%}%>
+                <% if(serverError){%>
+                  <p style="color: crimson;text-align: center;">
+                    <%= serverError%>
+                  </p>
                   <%}%>
-                  <% if(serverError){%>
-                    <p style="color: crimson;text-align: center;"><%= serverError%></p>
-                  <%}%>
-                  <!-- <div class="alert alert-sucess " style="color:Red;  font-family: tahoma;text-align: center;font-weight: 400;font-family: Arial, Helvetica, sans-serif;font-size: 18px;position: relative;top:-60px;"><%= serverError %></div>  -->
-                
-                   <form action="additems" method="POST">
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label" maxlength="20" 
-                      >Item Name</label>
-                    </div>
-                    <div class="col-auto">
-                      <input pattern="[a-zA-Z0-9\s]+" required type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="itemname" maxlength="20" 
-                      style="text-transform:uppercase">
-                    </div>
-                    <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                       
-                      </span>
-                    </div>
-                  </div>
-                  <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label">Price</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="number"   pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" style="position: relative;
+                    <!-- <div class="alert alert-sucess " style="color:Red;  font-family: tahoma;text-align: center;font-weight: 400;font-family: Arial, Helvetica, sans-serif;font-size: 18px;position: relative;top:-60px;"><%= serverError %></div>  -->
+
+                    <form action="additems" method="POST">
+                      <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                          <label for="inputPassword6" class="col-form-label" maxlength="20">Item Name</label>
+                        </div>
+                        <div class="col-auto">
+                          <input pattern="[a-zA-Z0-9\s]+" required type="text" id="inputPassword6" class="form-control"
+                            aria-describedby="passwordHelpInline" name="itemname" maxlength="20"
+                            style="text-transform:uppercase">
+                        </div>
+                        <div class="col-auto">
+                          <span id="passwordHelpInline" class="form-text">
+
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                          <label for="inputPassword6" class="col-form-label">Price</label>
+                        </div>
+                        <div class="col-auto">
+                          <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="inputPassword6"
+                            class="form-control" aria-describedby="passwordHelpInline" style="position: relative;
                       left:40px;color: black;" name="itemprice">
-                    </div>
-                    <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                      
-                    </div>
-                  </div>
-                  <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label" >Quantity</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="number"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="Num1" class="form-control" aria-describedby="passwordHelpInline" style="position: relative;
-                      left:15px;color: black;"  name="itemquantity" onkeyup="reSum();">
-                    </div>
-                    <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                       
-                      </span>
-                    </div>
-                  </div>
-                  <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label" >Pieces Per Qty</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="number"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="Num2" class="form-control" aria-describedby="passwordHelpInline" style="position: relative;
-                      left:-30px;color: black;" name="pieceperquantity" onkeyup="reSum();">
-                    </div>
-                    <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                       
-                      </span>
-                    </div>
-                  </div>
-                  <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                      <label for="inputPassword6" class="col-form-label" >Total Items</label>
-                    </div>
-                    <div class="col-auto">
-                      <input type="number" id="Sum" class="form-control" aria-describedby="passwordHelpInline" style="position: relative;
-                      left:-10px;color: black;" name="total" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" >
-                    </div>
-                    <div class="col-auto">
-                      <span id="passwordHelpInline" class="form-text">
-                       
-                      </span>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary" style="position:relative;left:120px">Add items</button>
-</form>
-              </div>
-              <div class="col-sm-4"></div>
-            </div>         
-        
-           
-            
-             <div class="footer">
-                     
-                     <div class="clearfix"> </div>
-                      
-             </div>
-         </div>
-             </div>
-             <!--content-->
-         </div>
- </div>
-                 <!--//content-inner-->
-             <!--/sidebar-menu-->
-                
-                               <div class="clearfix"></div>		
-                             </div>
-                             <script>
-                             var toggle = true;
-                                         
-                             $(".sidebar-icon").click(function() {                
-                               if (toggle)
-                               {
-                                 $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-                                 $("#menu span").css({"position":"absolute"});
-                               }
-                               else
-                               {
-                                 $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-                                 setTimeout(function() {
-                                   $("#menu span").css({"position":"relative"});
-                                 }, 400);
-                               }
-                                             
-                                             toggle = !toggle;
-                                         });
-                             </script>
- <!--js -->
- <script src="js/jquery.nicescroll.js"></script>
- <script src="js/scripts.js"></script>
- <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- /Bootstrap Core JavaScript -->
-    <!-- real-time -->
- <script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
-     <script type="text/javascript">
- 
-     $(function() {
- 
-         // We use an inline data source in the example, usually data would
-         // be fetched from a server
- 
-         var data = [],
-             totalPoints = 300;
- 
-         function getRandomData() {
- 
-             if (data.length > 0)
-                 data = data.slice(1);
- 
-             // Do a random walk
- 
-             while (data.length < totalPoints) {
- 
-                 var prev = data.length > 0 ? data[data.length - 1] : 50,
-                     y = prev + Math.random() * 10 - 5;
- 
-                 if (y < 0) {
-                     y = 0;
-                 } else if (y > 100) {
-                     y = 100;
-                 }
- 
-                 data.push(y);
-             }
- 
-             // Zip the generated y values with the x values
- 
-             var res = [];
-             for (var i = 0; i < data.length; ++i) {
-                 res.push([i, data[i]])
-             }
- 
-             return res;
-         }
- 
-         // Set up the control widget
- 
-         var updateInterval = 30;
-         $("#updateInterval").val(updateInterval).change(function () {
-             var v = $(this).val();
-             if (v && !isNaN(+v)) {
-                 updateInterval = +v;
-                 if (updateInterval < 1) {
-                     updateInterval = 1;
-                 } else if (updateInterval > 2000) {
-                     updateInterval = 2000;
-                 }
-                 $(this).val("" + updateInterval);
-             }
-         });
- 
-         var plot = $.plot("#placeholder", [ getRandomData() ], {
-             series: {
-                 shadowSize: 0	// Drawing is faster without shadows
-             },
-             yaxis: {
-                 min: 0,
-                 max: 100
-             },
-             xaxis: {
-                 show: false
-             }
-         });
- 
-         function update() {
- 
-             plot.setData([getRandomData()]);
- 
-             // Since the axes don't change, we don't need to call plot.setupGrid()
- 
-             plot.draw();
-             setTimeout(update, updateInterval);
-         }
- 
-         update();
- 
-         // Add the Flot version string to the footer
- 
-         $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-     });
- 
-     </script>
- <!-- /real-time -->
- <script src="js/jquery.fn.gantt.js"></script>
-     <script>
- 
-         $(function() {
- 
-             "use strict";
- 
-             $(".gantt").gantt({
-                 source: [{
-                     name: "Sprint 0",
-                     desc: "Analysis",
-                     values: [{
-                         from: "/Date(1320192000000)/",
-                         to: "/Date(1322401600000)/",
-                         label: "Requirement Gathering", 
-                         customClass: "ganttRed"
-                     }]
-                 },{
-                     name: " ",
-                     desc: "Scoping",
-                     values: [{
-                         from: "/Date(1322611200000)/",
-                         to: "/Date(1323302400000)/",
-                         label: "Scoping", 
-                         customClass: "ganttRed"
-                     }]
-                 },{
-                     name: "Sprint 1",
-                     desc: "Development",
-                     values: [{
-                         from: "/Date(1323802400000)/",
-                         to: "/Date(1325685200000)/",
-                         label: "Development", 
-                         customClass: "ganttGreen"
-                     }]
-                 },{
-                     name: " ",
-                     desc: "Showcasing",
-                     values: [{
-                         from: "/Date(1325685200000)/",
-                         to: "/Date(1325695200000)/",
-                         label: "Showcasing", 
-                         customClass: "ganttBlue"
-                     }]
-                 },{
-                     name: "Sprint 2",
-                     desc: "Development",
-                     values: [{
-                         from: "/Date(1326785200000)/",
-                         to: "/Date(1325785200000)/",
-                         label: "Development", 
-                         customClass: "ganttGreen"
-                     }]
-                 },{
-                     name: " ",
-                     desc: "Showcasing",
-                     values: [{
-                         from: "/Date(1328785200000)/",
-                         to: "/Date(1328905200000)/",
-                         label: "Showcasing", 
-                         customClass: "ganttBlue"
-                     }]
-                 },{
-                     name: "Release Stage",
-                     desc: "Training",
-                     values: [{
-                         from: "/Date(1330011200000)/",
-                         to: "/Date(1336611200000)/",
-                         label: "Training", 
-                         customClass: "ganttOrange"
-                     }]
-                 },{
-                     name: " ",
-                     desc: "Deployment",
-                     values: [{
-                         from: "/Date(1336611200000)/",
-                         to: "/Date(1338711200000)/",
-                         label: "Deployment", 
-                         customClass: "ganttOrange"
-                     }]
-                 },{
-                     name: " ",
-                     desc: "Warranty Period",
-                     values: [{
-                         from: "/Date(1336611200000)/",
-                         to: "/Date(1349711200000)/",
-                         label: "Warranty Period", 
-                         customClass: "ganttOrange"
-                     }]
-                 }],
-                 navigate: "scroll",
-                 scale: "weeks",
-                 maxScale: "months",
-                 minScale: "days",
-                 itemsPerPage: 10,
-                 onItemClick: function(data) {
-                     alert("Item clicked - show some details");
-                 },
-                 onAddClick: function(dt, rowId) {
-                     alert("Empty space clicked - add an item!");
-                 },
-                 onRender: function() {
-                     if (window.console && typeof console.log === "function") {
-                         console.log("chart rendered");
-                     }
-                 }
-             });
- 
-             $(".gantt").popover({
-                 selector: ".bar",
-                 title: "I'm a popover",
-                 content: "And I'm the content of said popover.",
-                 trigger: "hover"
-             });
- 
-             prettyPrint();
- 
-         });
- 
-     </script>
-            <script src="js/menu_jquery.js"></script>
+                        </div>
+                        <div class="col-auto">
+                          <span id="passwordHelpInline" class="form-text">
+
+                        </div>
+                      </div>
+                      <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                          <label for="inputPassword6" class="col-form-label">Quantity</label>
+                        </div>
+                        <div class="col-auto">
+                          <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="Num1" class="form-control"
+                            aria-describedby="passwordHelpInline" style="position: relative;
+                      left:15px;color: black;" name="itemquantity" onchange="reSum();">
+                        </div>
+                        <div class="col-auto">
+                          <span id="passwordHelpInline" class="form-text">
+
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                          <label for="inputPassword6" class="col-form-label">Pieces Per Qty</label>
+                        </div>
+                        <div class="col-auto">
+                          <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" id="Num2" class="form-control"
+                            aria-describedby="passwordHelpInline" style="position: relative;
+                      left:-30px;color: black;" name="pieceperquantity" onchange="reSum();">
+                        </div>
+                        <div class="col-auto">
+                          <span id="passwordHelpInline" class="form-text">
+
+                          </span>
+                        </div>
+                      </div>
+                      <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                          <label for="inputPassword6" class="col-form-label">Total Items</label>
+                        </div>
+                        <div class="col-auto">
+                          <input type="number" id="Sum" class="form-control" aria-describedby="passwordHelpInline"
+                            style="position: relative;
+                      left:-10px;color: black;" name="total" pattern="[0-9]+([\.,][0-9]+)?" step="0.01">
+                        </div>
+                        <div class="col-auto">
+                          <span id="passwordHelpInline" class="form-text">
+
+                          </span>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="position:relative;left:120px">Add
+                        items</button>
+                    </form>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
 
 
 
-            <script>
+        <div class="footer">
 
-function reSum()
-                {
-                    var num1 = (document.getElementById("Num1").value);
-                    var num2 = (document.getElementById("Num2").value);
-                   
-                   if(NaN){
-                    document.getElementById("Sum").value="0.00"
-                   }else{
-                    document.getElementById("Sum").value = (num1 * num2).toFixed(2);
-                   }
-                }
-        
-            </script>
+          <div class="clearfix"> </div>
 
-            <%- include('../partials/adminsidebar'); %>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
- </body>
- </html>
+        </div>
+      </div>
+      </div>
+      <!--content-->
+      </div>
+      </div>
+      <!--//content-inner-->
+      <!--/sidebar-menu-->
+
+      <div class="clearfix"></div>
+      </div>
+      <script>
+        var toggle = true;
+
+        $(".sidebar-icon").click(function () {
+          if (toggle) {
+            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+            $("#menu span").css({ "position": "absolute" });
+          }
+          else {
+            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+            setTimeout(function () {
+              $("#menu span").css({ "position": "relative" });
+            }, 400);
+          }
+
+          toggle = !toggle;
+        });
+      </script>
+      <!--js -->
+      <script src="js/jquery.nicescroll.js"></script>
+      <script src="js/scripts.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
+      <!-- /Bootstrap Core JavaScript -->
+      <!-- real-time -->
+      <script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
+      <script type="text/javascript">
+
+        $(function () {
+
+          // We use an inline data source in the example, usually data would
+          // be fetched from a server
+
+          var data = [],
+            totalPoints = 300;
+
+          function getRandomData() {
+
+            if (data.length > 0)
+              data = data.slice(1);
+
+            // Do a random walk
+
+            while (data.length < totalPoints) {
+
+              var prev = data.length > 0 ? data[data.length - 1] : 50,
+                y = prev + Math.random() * 10 - 5;
+
+              if (y < 0) {
+                y = 0;
+              } else if (y > 100) {
+                y = 100;
+              }
+
+              data.push(y);
+            }
+
+            // Zip the generated y values with the x values
+
+            var res = [];
+            for (var i = 0; i < data.length; ++i) {
+              res.push([i, data[i]])
+            }
+
+            return res;
+          }
+
+          // Set up the control widget
+
+          var updateInterval = 30;
+          $("#updateInterval").val(updateInterval).change(function () {
+            var v = $(this).val();
+            if (v && !isNaN(+v)) {
+              updateInterval = +v;
+              if (updateInterval < 1) {
+                updateInterval = 1;
+              } else if (updateInterval > 2000) {
+                updateInterval = 2000;
+              }
+              $(this).val("" + updateInterval);
+            }
+          });
+
+          var plot = $.plot("#placeholder", [getRandomData()], {
+            series: {
+              shadowSize: 0	// Drawing is faster without shadows
+            },
+            yaxis: {
+              min: 0,
+              max: 100
+            },
+            xaxis: {
+              show: false
+            }
+          });
+
+          function update() {
+
+            plot.setData([getRandomData()]);
+
+            // Since the axes don't change, we don't need to call plot.setupGrid()
+
+            plot.draw();
+            setTimeout(update, updateInterval);
+          }
+
+          update();
+
+          // Add the Flot version string to the footer
+
+          $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+        });
+
+      </script>
+      <!-- /real-time -->
+      <script src="js/jquery.fn.gantt.js"></script>
+      <script>
+
+        $(function () {
+
+          "use strict";
+
+          $(".gantt").gantt({
+            source: [{
+              name: "Sprint 0",
+              desc: "Analysis",
+              values: [{
+                from: "/Date(1320192000000)/",
+                to: "/Date(1322401600000)/",
+                label: "Requirement Gathering",
+                customClass: "ganttRed"
+              }]
+            }, {
+              name: " ",
+              desc: "Scoping",
+              values: [{
+                from: "/Date(1322611200000)/",
+                to: "/Date(1323302400000)/",
+                label: "Scoping",
+                customClass: "ganttRed"
+              }]
+            }, {
+              name: "Sprint 1",
+              desc: "Development",
+              values: [{
+                from: "/Date(1323802400000)/",
+                to: "/Date(1325685200000)/",
+                label: "Development",
+                customClass: "ganttGreen"
+              }]
+            }, {
+              name: " ",
+              desc: "Showcasing",
+              values: [{
+                from: "/Date(1325685200000)/",
+                to: "/Date(1325695200000)/",
+                label: "Showcasing",
+                customClass: "ganttBlue"
+              }]
+            }, {
+              name: "Sprint 2",
+              desc: "Development",
+              values: [{
+                from: "/Date(1326785200000)/",
+                to: "/Date(1325785200000)/",
+                label: "Development",
+                customClass: "ganttGreen"
+              }]
+            }, {
+              name: " ",
+              desc: "Showcasing",
+              values: [{
+                from: "/Date(1328785200000)/",
+                to: "/Date(1328905200000)/",
+                label: "Showcasing",
+                customClass: "ganttBlue"
+              }]
+            }, {
+              name: "Release Stage",
+              desc: "Training",
+              values: [{
+                from: "/Date(1330011200000)/",
+                to: "/Date(1336611200000)/",
+                label: "Training",
+                customClass: "ganttOrange"
+              }]
+            }, {
+              name: " ",
+              desc: "Deployment",
+              values: [{
+                from: "/Date(1336611200000)/",
+                to: "/Date(1338711200000)/",
+                label: "Deployment",
+                customClass: "ganttOrange"
+              }]
+            }, {
+              name: " ",
+              desc: "Warranty Period",
+              values: [{
+                from: "/Date(1336611200000)/",
+                to: "/Date(1349711200000)/",
+                label: "Warranty Period",
+                customClass: "ganttOrange"
+              }]
+            }],
+            navigate: "scroll",
+            scale: "weeks",
+            maxScale: "months",
+            minScale: "days",
+            itemsPerPage: 10,
+            onItemClick: function (data) {
+              alert("Item clicked - show some details");
+            },
+            onAddClick: function (dt, rowId) {
+              alert("Empty space clicked - add an item!");
+            },
+            onRender: function () {
+              if (window.console && typeof console.log === "function") {
+                console.log("chart rendered");
+              }
+            }
+          });
+
+          $(".gantt").popover({
+            selector: ".bar",
+            title: "I'm a popover",
+            content: "And I'm the content of said popover.",
+            trigger: "hover"
+          });
+
+          prettyPrint();
+
+        });
+
+      </script>
+      <script src="js/menu_jquery.js"></script>
+
+
+
+      <script>
+
+        function reSum() {
+          var num1 = (document.getElementById("Num1").value);
+          var num2 = (document.getElementById("Num2").value);
+
+          if (document.getElementById("Num2").value === "") {
+          var calnum =  document.getElementById("Num2").value = 1;
+            document.getElementById("Sum").value = (num1 * calnum);
+          } else {
+            document.getElementById("Sum").value = (num1 * num2);
+          }
+        }
+
+      </script>
+
+      <%- include('../partials/adminsidebar'); %>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  </body>
+
+  </html>

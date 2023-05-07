@@ -122,28 +122,33 @@ exports.postAdminItemsEdit = (req, res) => {
     res.redirect("/adminitemsedit" + id);
   }
   else if (quantity === "") {
-    req.flash('server-error', "please enter the quantity")
+    req.flash('server-error', "please enter the quantity");
     res.redirect("/adminitemsedit" + id);
   }
   else if (price === "") {
-    req.flash('server-error', "please enter the price ")
+    req.flash('server-error', "please enter the price");
     res.redirect("/adminitemsedit" + id);
   }
   else if (item === "") {
-    req.flash('server-error', "please enter the item")
+    req.flash('server-error', "please enter the item");
     res.redirect("/adminitemsedit" + id);
   }
   else if (total === "") {
-    req.flash('server-error', "please enter the total")
+    req.flash('server-error', "please enter the total");
+    res.redirect("/adminitemsedit" + id);
+  } 
+  else if (item === "Select items") {
+    req.flash('server-error', "please select an item");
     res.redirect("/adminitemsedit" + id);
   }
   else {
+    console.log('The value of item',item)
     var parseprice = parseFloat(price)
     var parsequantity = parseFloat(quantity)
     var parsetotal = parseFloat(total)
     Add.findByIdAndUpdate(id, { itemname: item, date: billdate, itemprice: parseprice, itemquantity: parsequantity, total: parsetotal },
       function (err, docs) {
-        req.flash('server-success', "information inserted successfully")
+        req.flash('server-success', "information inserted successfully");
         res.redirect("/adminitemsedit" + id);
       });
   }
