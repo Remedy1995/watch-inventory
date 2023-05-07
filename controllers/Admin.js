@@ -22,6 +22,11 @@ exports.Admin = (req, res) => {
 
 
 exports.getAdminInformation = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   var username = req.session.username;
   var id = req.params.id;
   Admin.find({ 'username': new RegExp(username, 'i') }, function (err, docs) {
@@ -75,6 +80,11 @@ exports.adminDailySales = (req, res) => {
 }
 
 exports.getAdminItemsEdit = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   var id = req.params.id;
   var username = req.session.username;
   Admin.find({ 'username': new RegExp(username, 'i') }, function (err, docs) {
@@ -140,6 +150,11 @@ exports.postAdminItemsEdit = (req, res) => {
 }
 
 exports.getAdminDelete = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   var id = req.params.id;
   Add.findByIdAndDelete(id, function (err) {
     if (err) console.log(err);
@@ -156,6 +171,11 @@ exports.getadmin = (req, res) => {
 
 
 exports.AdminSearch = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   var search = req.body.search;
   Purchase.find({ 'customername': new RegExp(search, 'i') }, function (err, purchase) {
     TotalAmount.find({ 'customername': new RegExp(search, 'i') }, function (err, total) {
@@ -246,15 +266,20 @@ exports.logAdmin = (req, res) => {
       // return res.render("user",{firstname:firstname,lastname:lastname,id:id})
       res.redirect(url.format({
         pathname: "/adminhome",
-        query: {
-          firstname: firstname,
-          lastname: lastname
-        }
+        // query: {
+        //   firstname: firstname,
+        //   lastname: lastname
+        // }
       }));
     }
   })
 }
 exports.adminHome = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   username = req.session.username;
   Admin.find({ 'username': new RegExp(username, 'i') }, function (err, docs) {
     for (i = 0; i < docs.length; i++) {

@@ -4,6 +4,11 @@ const Register=require('../models/registermodel');
 const todayDate=require('../date');
 //allstocks
 exports.allStocks=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         username=req.session.username;
         Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
         for(i=0;i<docs.length;i++){
@@ -43,6 +48,11 @@ exports.postAllstocks=(req,res)=>{
          })
 }
 exports.getaddItems=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         username=req.session.username;
         Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
         for(i=0;i<docs.length;i++){

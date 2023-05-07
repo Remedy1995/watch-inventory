@@ -4,6 +4,11 @@ const TotalAmount = require('../models/totalamount');
 const Admin = require('../models/adminmodel');
 //view user purchases
 exports.viewUserPurchases = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   Purchase.find({}, function (err, purchase) {
     username = req.session.username;
     Register.find({ 'username': new RegExp(username, 'i') }, function (err, docs) {
@@ -64,6 +69,11 @@ exports.postPurchases = (req, res) => {
 }
 
 exports.getPurchases = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   Purchase.find({}, function (err, purchase, purchase1) {
     username = req.session.username;
     Admin.find({ 'username': new RegExp(username, 'i') }, function (err, docs) {
@@ -82,10 +92,20 @@ exports.getPurchases = (req, res) => {
 
 
 exports.getviewPurchases = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   res.redirect("/viewpuchases");
 }
 
 exports.deletePurchases = (req, res) => {
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   console.log(req.params.id);
   Purchase.findById(req.params.id, function (err, information) {
     var customer_name = information.customername;

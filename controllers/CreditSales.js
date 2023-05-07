@@ -7,6 +7,11 @@ const model=require('../models/addmodels');
 const total=require('../models/totalamount');
 
 exports.getCreditSales=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     const invoice=Math.random().toString().substring(4,12);
     Add.find({},function(err,sales){
        //get the current date
@@ -27,6 +32,11 @@ exports.getCreditSales=(req,res)=>{
 }
 
 exports.getCreditRetailSales=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         const invoice=Math.random().toString().substring(4,12);
         Add.find({},function(err,sales){
            //get the current date

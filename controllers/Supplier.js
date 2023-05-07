@@ -4,6 +4,11 @@ const Admin=require('../models/adminmodel');
 const Add = require('../models/addmodels');
 
 exports.supplierInformation=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         var id=req.params.id;
        Supplier.findById(id,function(err,information){
            if(err){
@@ -25,6 +30,11 @@ exports.supplierInformation=(req,res)=>{
          })
      }
     exports.supplierAdminInformation=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
             var id=req.params.id;
             Supplier.findById(id,function(err,information){
                var suppliername=information.suppliername;
@@ -44,6 +54,11 @@ exports.supplierInformation=(req,res)=>{
      }
 
      exports.getSuppliersEdit=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
           var username=req.session.username;
            Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
              for(i=0;i<docs.length;i++){
@@ -61,6 +76,11 @@ exports.supplierInformation=(req,res)=>{
      }
 
      exports.getSuppliersAdminEdit=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
            var username=req.session.username;
            Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
              for(i=0;i<docs.length;i++){
@@ -131,6 +151,11 @@ exports.supplierInformation=(req,res)=>{
      }
 
      exports.getSupplier=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
      username=req.session.username;
     Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
     for(i=0;i<docs.length;i++){
@@ -190,6 +215,11 @@ exports.supplierInformation=(req,res)=>{
 
 
      exports.getadminSupplier=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
               username=req.session.username;
               Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
               for(i=0;i<docs.length;i++){
@@ -246,6 +276,11 @@ exports.supplierInformation=(req,res)=>{
 
 
      exports.getAllSuppliers=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
                 username=req.session.username;
                 Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
                 for(i=0;i<docs.length;i++){
@@ -262,6 +297,11 @@ exports.supplierInformation=(req,res)=>{
      }
 
  exports.getAllSuppliersAdmin=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   username=req.session.username;
   Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
 
@@ -333,6 +373,11 @@ Supplier.find({'suppliername' : new RegExp(search, 'i')}, function(err, purchase
 
 
  exports.getsuppliersDelete=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         Supplier.findByIdAndDelete(req.params.id, function (err) {
             if(err) console.log(err);
             console.log("Successful deletion");

@@ -2,6 +2,11 @@
 const Admin=require('../models/adminmodel');
 const Register=require('../models/registermodel');
 exports.getPrintReceipt=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     username=req.session.username;
     Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
   
@@ -17,6 +22,11 @@ exports.getPrintReceipt=(req,res)=>{
 }
 
 exports.printreceiptAdmin=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     username=req.session.username;
     Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
     for(i=0;i<docs.length;i++){
@@ -32,9 +42,19 @@ exports.printreceiptAdmin=(req,res)=>{
 
 
 exports.searchReciept=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     res.redirect('printreceipt')
 }
 
 exports.adminReceipt=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
 res.redirect('printreceiptadmin')
 }

@@ -5,6 +5,11 @@ const Admin=require('../models/adminmodel');
 const url = require('url');
 const md5=require('md5');
 exports.userInformation=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         var username=req.session.username;
           var id=req.params.id;
           Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
@@ -56,6 +61,11 @@ DailySales.find({'date' : new RegExp(date, 'i')}, function(err, docs){
 
 
 exports.getUserHome=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         username=req.session.username;
         Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
         for(i=0;i<docs.length;i++){
@@ -69,6 +79,11 @@ exports.getUserHome=(req,res)=>{
     }
 
     exports.Edit=(req,res)=>{
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma' : 'no-cache',
+        'Expires' : '0',
+    })
             var username=req.session.username;
             Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
               for(i=0;i<docs.length;i++){ 
@@ -195,11 +210,21 @@ exports.getUserHome=(req,res)=>{
       res.redirect("/signupandsignin")
         }
 exports.getSignupandsignin=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     res.render('pages/signupandsignin',{serverSucess:req.flash('server-success'),serverError:req.flash('server-error')});
 }
 
 
 exports.postAllusers=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   var search=req.body.search;
 Register.find({'username' : new RegExp(search, 'i')}, function(err, purchase){
    username=req.session.username;
@@ -218,6 +243,11 @@ Register.find({'username' : new RegExp(search, 'i')}, function(err, purchase){
 }
 
 exports.usersDelete=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
       Register.findByIdAndDelete(req.params.id, function (err) {
           if(err) console.log(err);
           console.log("Successful deletion");
@@ -227,6 +257,11 @@ exports.usersDelete=(req,res)=>{
 
 
 exports.userAccountEdit=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     var id=req.params.id;
     username=req.session.username;
     Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){  
@@ -282,6 +317,11 @@ exports.postuserAccountEdit=(req,res)=>{
 
 
 exports.getuserPasswordChange=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     username=req.session.username;
     Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
      
@@ -341,6 +381,11 @@ exports.postuserPasswordChange=(req,res)=>{
 
 
   exports.getAllUsers=(req,res)=>{
+    res.set({
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma' : 'no-cache',
+      'Expires' : '0',
+  })
       username=req.session.username;
       Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
       for(i=0;i<docs.length;i++){
@@ -366,8 +411,11 @@ exports.postuserPasswordChange=(req,res)=>{
       console.log('cannot logout',err)
     }
     else{
-      res.clearCookie();
-      console.log('you have logout',req.session)
+      // res.setHeader('Expires','-1');
+      // res.setHeader('Cache-Control','no-cache,no-store,must-revalidate');
+      // res.setHeader('Pragma','no-cache');
+      // res.clearCookie();
+      // console.log('you have logout',req.session)
       res.redirect('/')
     }
   })
@@ -377,6 +425,11 @@ exports.postuserPasswordChange=(req,res)=>{
 
 
   exports.checkPage=(req,res)=>{
+    res.set({
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma' : 'no-cache',
+      'Expires' : '0',
+  })
       username=req.session.username;
       Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
       for(i=0;i<docs.length;i++){
@@ -390,6 +443,11 @@ exports.postuserPasswordChange=(req,res)=>{
   }
 
   exports.home=(req,res)=>{
+  //   res.set({
+  //     'Cache-Control': 'no-cache, no-store, must-revalidate',
+  //     'Pragma' : 'no-cache',
+  //     'Expires' : '0',
+  // })
     console.log('you are on the landing page',req.session.username);
    console.log(req.cookies.role,typeof(req.cookies.role))
   res.render('pages/signupandsignin',{serverSucess:req.flash('server-success'),serverError:req.flash('server-error')});

@@ -53,6 +53,11 @@ exports.allDebtors=(req,res)=>{
 
 
 exports.getAllDebtors=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
             Creditsales.find({},function(err,purchase,purchase1){
                username=req.session.username;
                Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
@@ -69,6 +74,11 @@ exports.getAllDebtors=(req,res)=>{
 }
 
 exports.getDebtorsInformation=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         var username=req.session.username;
           Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
             for(i=0;i<docs.length;i++){ 
@@ -95,6 +105,11 @@ exports.getDebtorsInformation=(req,res)=>{
 
 
 exports.getDebtorsEdit=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         var username=req.session.username;
           Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
             for(i=0;i<docs.length;i++){ 
@@ -113,6 +128,11 @@ exports.getDebtorsEdit=(req,res)=>{
 
 
 exports.postDebtorsEdit=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
         var id=req.params.id;//get the id 
         var invoice=req.body.invoice;
         var billdate=req.body.date;
@@ -169,6 +189,11 @@ exports.postDebtorsEdit=(req,res)=>{
 
 
 exports.debtorsDelete=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
       Creditsales.findByIdAndDelete(req.params.id, function (err) {
             if(err) console.log(err);
             console.log("Successful deletion");

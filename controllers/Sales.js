@@ -143,6 +143,11 @@ req.flash('server-success',"You have sucessfully made purchases");
 }
 //get sales route
 exports.getSales=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     model();
    const username=req.session.username;
     Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
@@ -295,6 +300,11 @@ req.flash('server-success',"You have sucessfully made purchases");
 //get retail sales
 
 exports.getRetail=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
       model();
       username=req.session.username;
       Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
@@ -314,6 +324,12 @@ exports.getRetail=(req,res)=>{
 }
 
 exports.adminGetDailySales=(req,res)=>{
+
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
   username=req.session.username;
   Admin.find({'username' : new RegExp(username, 'i')}, function(err, docs){
   for(i=0;i<docs.length;i++){
@@ -327,6 +343,11 @@ exports.adminGetDailySales=(req,res)=>{
 }
 
 exports.getDailySales=(req,res)=>{
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma' : 'no-cache',
+    'Expires' : '0',
+})
     username=req.session.username;
     Register.find({'username' : new RegExp(username, 'i')}, function(err, docs){
     for(i=0;i<docs.length;i++){
