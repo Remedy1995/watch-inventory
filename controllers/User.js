@@ -416,7 +416,7 @@ exports.postuserPasswordChange=(req,res)=>{
       // res.setHeader('Pragma','no-cache');
       // res.clearCookie();
       // console.log('you have logout',req.session)
-      res.redirect('/')
+      res.redirect('/');
     }
   })
   // })
